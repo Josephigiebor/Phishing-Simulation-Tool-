@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Simulation Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e6f7ff;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phishing Simulation Dashboard</h1>
+
+    <!-- Summary Stats -->
+    <div class="stats">
+        <div class="stat-box">
+            <h2>Total Interactions</h2>
+            <p>{{ interactions|length }}</p>
+        </div>
+        <div class="stat-box">
+            <h2>Unique Users</h2>
+            <p>{{ unique_users }}</p>
+        </div>
+        <div class="stat-box">
+            <h2>Actions Tracked</h2>
+            <p>{{ actions_tracked }}</p>
+        </div>
+    </div>
+
+    <!-- Search Box -->
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for emails, actions, or IP addresses...">
+
+    <!-- Interaction Table -->
+    <table id="interactionTable">
+        <tr>
+            <th>ID</th>
+            <th>Email/Username</th>
+            <th>Action</th>
+            <th>IP Address</th>
+            <th>User Agent</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for interaction in interactions %}
+        <tr>
+            <td>{{ interaction['id'] }}</td>
+            <td>{{ interaction['email'] }}</td>
+            <td>{{ interaction['action'] }}</td>
+            <td>{{ interaction['ip_address'] }}</td>
+            <td>{{ interaction['user_agent'] }}</td>
+            <td>{{ interaction['country'] }}</td>
+            <td>{{ interaction['city'] }}</td>
+            <td>{{ interaction['timestamp'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- JavaScript for Search Function -->
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("interactionTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                tr[i].style.display = "none";
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+

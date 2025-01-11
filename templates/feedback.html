@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Awareness Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .feedback-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #d9534f;
+            font-size: 24px;
+        }
+        p {
+            color: #333;
+            font-size: 16px;
+            margin: 15px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            color: #555;
+            font-size: 14px;
+            text-align: left;
+        }
+        ul li strong {
+            color: #333;
+        }
+        .tips-header {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #007bff;
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Security Alert</h1>
+        <p>{{ message }}</p>
+        <p class="tips-header">Tips to Stay Safe:</p>
+        <ul>
+            <li><strong>1. Verify Email Senders:</strong> Always double-check the sender’s email address before clicking any links.</li>
+            <li><strong>2. Avoid Suspicious Links:</strong> Never click on links from unknown sources.</li>
+            <li><strong>3. Use Strong Passwords:</strong> Create unique and complex passwords for each of your accounts.</li>
+            <li><strong>4. Enable Two-Factor Authentication (2FA):</strong> Protect your accounts with an extra layer of security.</li>
+            <li><strong>5. Report Suspicious Emails:</strong> If you receive a phishing email, report it to your IT department or email provider.</li>
+        </ul>
+    </div>
+</body>
+</html>
